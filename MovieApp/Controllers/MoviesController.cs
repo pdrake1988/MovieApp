@@ -4,7 +4,7 @@ namespace MovieApp.Controllers
 {
     public class MoviesController : Controller
     {
-        public IActionResult Index()
+        public IActionResult MovieDetails()
         {
             return View();
         }
