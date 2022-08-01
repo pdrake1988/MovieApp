@@ -1,4 +1,5 @@
 using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-builder.Services.AddSqlServer<MovieDbContext>(builder.Configuration.GetConnectionString("MovieDb"));
+//builder.Services.AddSqlServer<MovieDbContext>(builder.Configuration.GetConnectionString("MovieDb"));
+builder.Services.AddDbContext<MovieDbContext>(option =>
+{
+    option.UseSqlServer(builder.Configuration.GetConnectionString("MovieDb"));
+});
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
